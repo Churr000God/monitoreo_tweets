@@ -76,6 +76,9 @@ try:
 
     data_dict = processed_df.to_dict("records")
     if data_dict:
+        print("Ejemplo de documento enriquecido:")
+        print(data_dict[0])
+        collection.delete_many({})
         collection.insert_many(data_dict)
         print("✅ Datos cargados exitosamente en MongoDB.")
     else:
