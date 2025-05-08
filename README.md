@@ -1,6 +1,6 @@
 # 🐦 Monitoreo de Tweets con Análisis de Sentimiento
 
-Este proyecto tiene como objetivo **monitorear publicaciones en Twitter** realizadas por fuentes oficiales relacionadas con seguridad y gobierno, **extraer información relevante** (alcaldía, delito, fecha, hora, menciones, hashtags), **analizar el sentimiento del mensaje**, y finalmente almacenar los datos en **MongoDB Atlas** para su posterior análisis.
+Este proyecto tiene como objetivo monitorear publicaciones en Twitter relacionadas con seguridad pública, analizar su contenido (alcaldía, delito, sentimiento), y almacenar los datos en MongoDB Atlas para su posterior análisis, incluyendo la exportación a CSV y visualización en Power BI.
 
 ---
 
@@ -11,12 +11,17 @@ monitoreo_tweets/
 ├── data/
 │   ├── tweets.csv
 │   ├── processed_tweets.csv
-│   └── tweets_with_sentiment.csv
+│   ├── tweets_with_sentiment.csv
+│   └── datos_mongo.csv
 ├── fetch_tweets.py
 ├── process_data.py
 ├── sentiment_analysis.py
+├── mongo_to_csv.py
+├── verificar_contenido.py
+├── ejecutar_exportacion.sh
+├── ejecutar_exportacion.bat
 ├── requirements.txt
-├── .env
+├── .env.example
 └── README.md
 ```
 
@@ -25,79 +30,63 @@ monitoreo_tweets/
 ## ⚙️ Requisitos
 
 - Python 3.11
-- Cuenta en [Twitter Developer Portal](https://developer.twitter.com/)
-- Cuenta en [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+- Cuenta de desarrollador en Twitter
+- Cuenta en MongoDB Atlas
 
 ---
 
-## 📦 Instalación
+## 🛠️ Instalación
 
-1. Clona el repositorio:
 ```bash
 git clone https://github.com/tu_usuario/monitoreo_tweets.git
 cd monitoreo_tweets
-```
-
-2. Crea entorno virtual:
-```bash
 python3.11 -m venv venv
 source venv/bin/activate
-```
-
-3. Instala dependencias:
-```bash
 pip install -r requirements.txt
 ```
 
-4. Crea un archivo `.env` y coloca tus claves:
+---
+
+## 🔐 Variables de entorno
+
+Crea un archivo `.env` basado en el siguiente formato:
 
 ```env
 BEARER_TOKEN=tu_token_de_twitter
-MONGO_URI=tu_uri_de_mongodb
+MONGODB_URI=mongodb+srv://usuario:contraseña@tuserver.mongodb.net/?retryWrites=true&w=majority
 ```
 
 ---
 
 ## 🚀 Ejecución
 
-Ejecuta los scripts en este orden:
-
 ```bash
 python fetch_tweets.py
 python process_data.py
 python sentiment_analysis.py
+python mongo_to_csv.py
 ```
 
 ---
 
-## 📊 Resultados
+## 🖥️ Automatización
 
-- `tweets.csv`: tweets originales
-- `processed_tweets.csv`: datos enriquecidos (delito, alcaldía, etc.)
-- `tweets_with_sentiment.csv`: con análisis de sentimiento
-- También se insertan automáticamente en MongoDB Atlas
+- **Linux**: ejecuta `./ejecutar_exportacion.sh`
+- **Windows**: doble clic en `ejecutar_exportacion.bat`
 
 ---
 
-## 🧠 Herramientas utilizadas
+## 📊 Visualización en Power BI
 
-- Python
-- Tweepy (API v2)
-- Pandas
-- TextBlob (para sentimiento)
-- MongoDB + pymongo
-- dotenv
+1. Abrir Power BI Desktop
+2. "Obtener datos" → Texto/CSV
+3. Selecciona `data/datos_mongo.csv`
+4. Clic en "Cargar" y comienza a graficar
 
----
-
-## 👨‍💻 Autor
-
-Diego G.  
-Estudiante de Ciencia de Datos | Tecmilenio  
-Proyecto académico – Segundo semestre
+⚠️ *Nota: Power BI Desktop solo está disponible para Windows.*
 
 ---
 
 ## 📜 Licencia
 
-Este proyecto es de uso académico. No usar datos obtenidos de la API con fines comerciales sin respetar los Términos de Uso de Twitter.
+Proyecto académico del Tecmilenio – Ciencia de Datos – Segundo semestre.
