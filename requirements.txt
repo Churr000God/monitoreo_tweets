@@ -1,8 +1,8 @@
-numpy==1.23.5
-pandas==1.5.3
-tweepy==4.10.0
-nltk==3.8.1
-textblob==0.17.1
-pymongo==3.12.0
-python-dotenv==1.0.1
-pymongo[srv]
+tweepy
+pandas
+python-dotenv
+textblob
+openpyxl
+pymongo
+unicode
+unidecode

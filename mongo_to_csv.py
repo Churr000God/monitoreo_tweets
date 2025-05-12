@@ -8,8 +8,11 @@ from dotenv import load_dotenv
 # Cargar variables de entorno
 load_dotenv()
 uri = os.getenv("MONGODB_URI")
-nombre_db = "Datos_TI"
-nombre_coleccion = "DatosTrend"
+
+# ⚠️ AJUSTAR ESTOS DOS VALORES
+nombre_db = "ProyectoFinal"
+nombre_coleccion = "TweetsClasificados"
+
 ruta_csv = os.path.join("data", "datos_mongo.csv")
 
 def exportar_datos():
